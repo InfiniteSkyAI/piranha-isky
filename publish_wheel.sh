@@ -17,7 +17,7 @@ aws codeartifact login \
     --region "$REGION"
 
 # 2. Locate the wheel
-WHEEL_PATH=$(ls dist/polyglot_piranha-*.whl 2>/dev/null | head -n 1 || true)
+WHEEL_PATH=$(ls dist/polyglot_piranha_isky-*.whl 2>/dev/null | head -n 1 || true)
 
 if [ -z "$WHEEL_PATH" ]; then
     echo "Error: No wheel found in dist/"
@@ -31,4 +31,4 @@ echo "Found wheel: $WHEEL_PATH"
 uvx twine upload --repository codeartifact --non-interactive --verbose "$WHEEL_PATH"
 
 echo "Done! Install with:"
-echo "uv pip install polyglot-piranha --extra-index-url https://$DOMAIN-$ACCOUNT_ID.d.codeartifact.$REGION.amazonaws.com/pypi/$REPO/simple"
+echo "uv pip install polyglot-piranha-isky --extra-index-url https://$DOMAIN-$ACCOUNT_ID.d.codeartifact.$REGION.amazonaws.com/pypi/$REPO/simple"
