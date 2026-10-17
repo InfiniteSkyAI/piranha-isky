@@ -1,5 +1,5 @@
 [project]
-name = "polyglot_piranha"
+name = "polyglot-piranha-isky"
 requires-python = ">=3.8"
 dynamic = ["version"]
 description = "Polyglot Piranha is a library for performing structural find and replace with deep cleanup."
