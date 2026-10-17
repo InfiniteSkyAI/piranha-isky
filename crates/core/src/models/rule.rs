@@ -191,6 +191,7 @@ macro_rules! piranha_rule {
 #[pymethods]
 impl Rule {
   #[new]
+  #[pyo3(signature = (name, query=None, replace=None, replace_idx=None, replace_node=None, holes=None, groups=None, filters=None, is_seed_rule=None, keep_comment_regexes=None, fact=None))]
   fn py_new(
     name: String, query: Option<String>, replace: Option<String>, replace_idx: Option<u8>,
     replace_node: Option<String>, holes: Option<HashSet<String>>, groups: Option<HashSet<String>>,

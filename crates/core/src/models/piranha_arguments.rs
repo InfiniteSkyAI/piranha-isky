@@ -35,7 +35,8 @@ use itertools::Itertools;
 use log::{debug, warn};
 use pyo3::{
   prelude::{pyclass, pymethods},
-  types::PyDict,
+  types::{PyDict, PyDictMethods},
+  Bound,
 };
 use regex::Regex;
 
@@ -197,9 +198,10 @@ impl PiranhaArguments {
   /// * allow_dirty_ast : Allows syntax errors in the input source code
   /// Returns PiranhaArgument.
   #[new]
+  #[pyo3(signature = (language, paths_to_codebase=None, include=None, exclude=None, substitutions=None, path_to_configurations=None, rule_graph=None, code_snippet=None, dry_run=None, cleanup_comments=None, cleanup_comments_buffer=None, number_of_ancestors_in_parent_scope=None, delete_consecutive_new_lines=None, global_tag_prefix=None, delete_file_if_empty=None, path_to_output_summary=None, allow_dirty_ast=None, should_validate=None, experiment_dyn=None, path_to_custom_builtin_rules=None))]
   fn py_new(
     language: String, paths_to_codebase: Option<Vec<String>>, include: Option<Vec<String>>,
-    exclude: Option<Vec<String>>, substitutions: Option<&PyDict>,
+    exclude: Option<Vec<String>>, substitutions: Option<Bound<'_, PyDict>>,
     path_to_configurations: Option<String>, rule_graph: Option<RuleGraph>,
     code_snippet: Option<String>, dry_run: Option<bool>, cleanup_comments: Option<bool>,
     cleanup_comments_buffer: Option<i32>, number_of_ancestors_in_parent_scope: Option<u8>,
