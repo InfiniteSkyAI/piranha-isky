@@ -138,6 +138,7 @@ impl Hash for Filter {
 #[pymethods]
 impl Filter {
   #[new]
+  #[pyo3(signature = (enclosing_node=None, outermost_enclosing_node=None, not_enclosing_node=None, not_contains=None, contains=None, at_least=None, at_most=None, child_count=None, sibling_count=None, fact_filter=None))]
   fn py_new(
     enclosing_node: Option<String>, outermost_enclosing_node: Option<String>,
     not_enclosing_node: Option<String>, not_contains: Option<Vec<String>>,

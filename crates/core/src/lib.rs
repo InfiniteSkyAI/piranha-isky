@@ -32,11 +32,13 @@ use log::{debug, info};
 
 use crate::models::rule_store::RuleStore;
 
-use pyo3::prelude::{pyfunction, pymodule, wrap_pyfunction, PyModule, PyResult, Python};
+use pyo3::prelude::{
+  pyfunction, pymodule, wrap_pyfunction, Bound, PyModule, PyModuleMethods, PyResult, Python,
+};
 use tempdir::TempDir;
 
 #[pymodule]
-fn polyglot_piranha(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
+fn polyglot_piranha(_py: Python<'_>, m: &Bound<'_, PyModule>) -> PyResult<()> {
   pyo3_log::init();
   m.add_function(wrap_pyfunction!(execute_piranha, m)?)?;
   m.add_class::<PiranhaArguments>()?;
